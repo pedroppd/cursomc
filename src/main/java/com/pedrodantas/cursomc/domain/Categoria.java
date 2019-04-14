@@ -25,12 +25,10 @@ public class Categoria implements Serializable{
 	private List<Produto> produtos = new ArrayList<>();
 	
 	
-	
-	
+		
 	public Categoria() {
 		
 	}
-
 
 	public Categoria(Integer id, String nome) {
 		super();
@@ -38,21 +36,13 @@ public class Categoria implements Serializable{
 		this.nome = nome;
 	}
 
-
-	
-	
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
 
-
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-
-
-	
-
 
 	public Integer getId() {
 		return id;

@@ -16,10 +16,10 @@ import com.pedrodantas.cursomc.repositories.ProdutoRepository;
 public class CursomcApplication implements CommandLineRunner{
     
 	@Autowired
-	private CategoriaRepository repo;
+	private CategoriaRepository categoriaRepository;
 	
 	@Autowired
-	private ProdutoRepository produtorepository;
+	private ProdutoRepository produtoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -42,8 +42,8 @@ public class CursomcApplication implements CommandLineRunner{
 		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
 		p3.getCategorias().addAll(Arrays.asList(cat1));
 		
-		repo.saveAll(Arrays.asList(cat1, cat2));
-		produtorepository.saveAll(Arrays.asList(p1,p2,p3));
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 		
 	}
 
