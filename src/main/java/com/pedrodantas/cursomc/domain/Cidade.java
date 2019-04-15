@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+
+
 @Entity
 public class Cidade implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -19,16 +21,20 @@ public class Cidade implements Serializable{
 	
 	private String nome;
 	
+	
 	@ManyToOne
 	@JoinColumn(name="estado_id")
 	private Estado estado;
 	
-
+	public Cidade() {
+		
+	}
+	
 	public Cidade(Integer id, String nome, Estado estado) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.setEstado(estado);
+		this.estado = estado;
 	}
 
 	public String getNome() {
@@ -79,9 +85,5 @@ public class Cidade implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 	
 }
