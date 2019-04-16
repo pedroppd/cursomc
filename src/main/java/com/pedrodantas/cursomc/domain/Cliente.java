@@ -29,6 +29,9 @@ public class Cliente implements Serializable{
 	private Integer tipo;
 	
 	@OneToMany(mappedBy="cliente")
+	private List<Pedido>pedidos = new ArrayList<>();
+	
+	@OneToMany(mappedBy="cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
 	@ElementCollection
@@ -97,6 +100,14 @@ public class Cliente implements Serializable{
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
 	}
+	
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 
 	@Override
 	public int hashCode() {
@@ -122,6 +133,8 @@ public class Cliente implements Serializable{
 			return false;
 		return true;
 	}
+
+	
 	
 	
 	
