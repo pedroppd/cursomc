@@ -38,8 +38,7 @@ public class CategoriaResource {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDto){
-		Categoria obj = service.fromDTO(objDto);
-		
+		Categoria obj = service.fromDTO(objDto);	
 		obj = service.insert(obj); //Aqui ele insere no banco de dados
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest() //Aqui é uma resposta http
@@ -54,9 +53,9 @@ public class CategoriaResource {
 		Categoria obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
-		return ResponseEntity.noContent().build();
-		
+		return ResponseEntity.noContent().build();		
 	}
+	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
