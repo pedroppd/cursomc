@@ -3,10 +3,12 @@ package com.pedrodantas.cursomc.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.pedrodantas.cursomc.domain.Categoria;
 import com.pedrodantas.cursomc.repositories.CategoriaRepository;
+import com.pedrodantas.cursomc.services.exception.DataIntegrityException;
 import com.pedrodantas.cursomc.services.exception.ObjectNotFoundException;
 
 
@@ -31,6 +33,15 @@ public class CategoriaService {
 	public Categoria update(Categoria obj) {
 		find(obj.getId());
 		return categoriaRepository.save(obj);
+	}
+	
+	public void delete(Integer id) {
+		try {
+			find(id);
+			categoriaRepository.deleteById(id);
+		}catch(DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possivel excluir uma categoria que possuí produtos !");
+		}
 	}
 
 }
