@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.pedrodantas.cursomc.domain.Cliente;
 import com.pedrodantas.cursomc.dto.ClienteDTO;
+import com.pedrodantas.cursomc.dto.ClienteNewDTO;
 import com.pedrodantas.cursomc.services.ClienteService;
 
 
@@ -85,6 +86,18 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(listDTO);		
 	}
 	
+/*	
+	@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Void> insertNewDto(@Valid @RequestBody ClienteNewDTO objDto){
+		Cliente obj = service.fromDTO(objDto);	
+		obj = service.insert(obj); 
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest() 
+		.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		
+		return ResponseEntity.created(uri).build();
+	}
 	
+	*/
 
 }
