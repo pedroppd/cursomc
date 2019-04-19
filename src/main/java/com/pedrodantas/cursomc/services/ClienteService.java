@@ -19,7 +19,6 @@ import com.pedrodantas.cursomc.domain.Endereco;
 import com.pedrodantas.cursomc.domain.enums.TipoCliente;
 import com.pedrodantas.cursomc.dto.ClienteDTO;
 import com.pedrodantas.cursomc.dto.ClienteNewDTO;
-import com.pedrodantas.cursomc.repositories.CidadeRepository;
 import com.pedrodantas.cursomc.repositories.ClienteRepository;
 import com.pedrodantas.cursomc.repositories.EnderecoRepository;
 import com.pedrodantas.cursomc.services.exception.DataIntegrityException;
