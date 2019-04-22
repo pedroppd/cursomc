@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pedrodantas.cursomc.domain.Produto;
-import com.pedrodantas.cursomc.dto.CategoriaDTO;
 import com.pedrodantas.cursomc.dto.ProdutoDTO;
 import com.pedrodantas.cursomc.resources.utils.URL;
 import com.pedrodantas.cursomc.services.ProdutoService;
