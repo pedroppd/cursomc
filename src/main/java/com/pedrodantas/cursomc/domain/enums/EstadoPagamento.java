@@ -19,7 +19,6 @@ public enum EstadoPagamento {
 		return descricao;
 	}
 
-
 	public int getCod() {
 		return cod;
 	}

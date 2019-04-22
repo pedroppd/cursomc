@@ -1,7 +1,6 @@
 package com.pedrodantas.cursomc.domain;
 
 import java.util.Date;
-
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -12,7 +11,6 @@ public class PagamentoComBoleto extends Pagamento{
 	
 	@JsonFormat(pattern ="dd/MM/yyyy")
 	private Date dataVencimento;
-	
 	
 	private Date dataPagamento;
 	
