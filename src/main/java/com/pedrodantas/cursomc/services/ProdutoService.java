@@ -42,5 +42,7 @@ public class ProdutoService {
 		return produtoRepository.findDistinctByNomeContainingAndCategoriasIn(nome, categorias, pageRequest);
 	}
 	
+	
+	
 
 }
