@@ -1,6 +1,7 @@
 package com.pedrodantas.cursomc.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -108,6 +109,29 @@ public class Pedido implements Serializable{
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
+	}
+	
+	@Override
+	public String toString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss")
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pedido número: ");
+		builder.append(getId());
+		builder.append(", instante: ");
+		builder.append(sdf.format(getInstante()));
+		builder.append(", Cliente: ");
+		builder.append(getCliente().getNome());
+		builder.append(", Situação do pagamento: ");
+		builder.append(getPagamento().getEstado().getDescricao());
+		builder.append("--DETALHES--");
+		for(ItemPedido ip : itens) {
+			builder.append(ip.toString());
+		}
+		
+		builder.append("Valor Total: ");
+		builder.append(getValorTotal());
+		
+		return builder.toString();
 	}
 
 	@Override
