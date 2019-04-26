@@ -27,12 +27,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	private static final String[] PUBLIC_MATCH = {
 			"/h2-console/**",
+			
 	};
 	
 	
 	private static final String[] PUBLIC_MATCH_GET = {
 			"/produtos/**",
-            "/categorias/**"
+            "/categorias/**",
+            "/clientes/**"
 	};
 	
 	@Override

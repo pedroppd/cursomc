@@ -2,6 +2,7 @@ package com.pedrodantas.cursomc.services;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import com.pedrodantas.cursomc.domain.PagamentoComCartao;
 import com.pedrodantas.cursomc.domain.Pedido;
 import com.pedrodantas.cursomc.domain.Produto;
 import com.pedrodantas.cursomc.domain.enums.EstadoPagamento;
+import com.pedrodantas.cursomc.domain.enums.Perfil;
 import com.pedrodantas.cursomc.domain.enums.TipoCliente;
 import com.pedrodantas.cursomc.repositories.CategoriaRepository;
 import com.pedrodantas.cursomc.repositories.CidadeRepository;
@@ -126,14 +128,20 @@ public class DbService {
 
 		Cliente cli1 = new Cliente(null, "maria", "pedroppd90@gmail.com", "952365123285", TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("975111058", "9888728190"));
-
+		
+		Cliente cli2 = new Cliente(null, "ana costa", "pedro_pdantas@hotmail.com", "29586863026", TipoCliente.PESSOAFISICA, pe.encode("123"));
+		cli2.addPerfil(Perfil.ADMIN);	
+		cli2.getTelefones().addAll(Arrays.asList("789852369", "123654758"));
+		
 		Endereco e1 = new Endereco(null, "Rua flores", "300", "apto 203", "Jardim", "38220934", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida matos", "105", "sala 800", "centro", "38777012", cli1, c2);
+		Endereco e3 = new Endereco(null, "Avenida 22", "156", "sala 220", "centro", "38777012", cli2, c2);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		cli2.getEnderecos().addAll(Arrays.asList(e3));
 
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
