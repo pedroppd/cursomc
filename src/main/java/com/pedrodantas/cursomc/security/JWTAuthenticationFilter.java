@@ -80,6 +80,7 @@ private AuthenticationManager authenticationManager;
 
             response.setStatus(401);
             response.setContentType("application/json"); 
+
             response.getWriter().append(json());
 
         }
