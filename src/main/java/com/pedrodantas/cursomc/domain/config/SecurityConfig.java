@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -26,6 +27,7 @@ import com.pedrodantas.cursomc.security.JwtUtil;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
@@ -45,7 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	private static final String[] PUBLIC_MATCH_GET = {
 			"/produtos/**",
             "/categorias/**",
-            "/clientes/**"
+            
+	};
+	
+	private static final String[] PUBLIC_MATCH_POST = {
+			"/produtos/**",
+            "/categorias/**",
+            
 	};
 	
 	@Override
@@ -57,6 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.cors().and().csrf().disable();
 		http.authorizeRequests()
+		.antMatchers(HttpMethod.POST, PUBLIC_MATCH_POST).permitAll()
 		.antMatchers(HttpMethod.GET, PUBLIC_MATCH_GET).permitAll()
 		.antMatchers(PUBLIC_MATCH).permitAll().anyRequest().authenticated();
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
