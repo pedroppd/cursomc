@@ -17,11 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pedrodantas.cursomc.domain.Cidade;
 import com.pedrodantas.cursomc.domain.Cliente;
 import com.pedrodantas.cursomc.domain.Endereco;
+import com.pedrodantas.cursomc.domain.enums.Perfil;
 import com.pedrodantas.cursomc.domain.enums.TipoCliente;
 import com.pedrodantas.cursomc.dto.ClienteDTO;
 import com.pedrodantas.cursomc.dto.ClienteNewDTO;
 import com.pedrodantas.cursomc.repositories.ClienteRepository;
 import com.pedrodantas.cursomc.repositories.EnderecoRepository;
+import com.pedrodantas.cursomc.security.UserSS;
+import com.pedrodantas.cursomc.services.exception.AuthorizationException;
 import com.pedrodantas.cursomc.services.exception.DataIntegrityException;
 import com.pedrodantas.cursomc.services.exception.ObjectNotFoundException;
 
@@ -41,6 +44,12 @@ public class ClienteService {
 
 	
 	public Cliente find(Integer id) throws ObjectNotFoundException {
+		UserSS userss = UserService.authorization();
+		
+		if(userss==null || !userss.hasRole(Perfil.ADMIN) && !id.equals(userss.getId())) {
+			throw new AuthorizationException("Acesso negado :(");
+		}
+		
 		Optional<Cliente> obj = clienteRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Cliente não encontrado ID:" + id + " tipo: " + Cliente.class.getName()));
