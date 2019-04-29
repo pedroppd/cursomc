@@ -44,7 +44,7 @@ public class ClienteService {
 
 	
 	public Cliente find(Integer id) throws ObjectNotFoundException {
-		UserSS userss = UserService.authorization();
+		UserSS userss = UserService.authenticated();
 		
 		if(userss==null || !userss.hasRole(Perfil.ADMIN) && !id.equals(userss.getId())) {
 			throw new AuthorizationException("Acesso negado :(");
