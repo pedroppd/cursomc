@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
 
+import com.pedrodantas.cursomc.domain.Cliente;
 import com.pedrodantas.cursomc.domain.Pedido;
 
 public class MockEmailService extends AbstractEmailService{
@@ -33,5 +34,7 @@ public class MockEmailService extends AbstractEmailService{
 		LOG.info("E-mail enviado");
 		
 	}
+
+	
 
 }
