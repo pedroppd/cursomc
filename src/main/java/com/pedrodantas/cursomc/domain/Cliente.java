@@ -38,6 +38,8 @@ public class Cliente implements Serializable{
 	@JsonIgnore
 	private String senha;
 	
+	private String imageUrl;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="cliente")
 	private List<Pedido>pedidos = new ArrayList<>();
@@ -142,6 +144,15 @@ public class Cliente implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 
 	@Override
 	public int hashCode() {
@@ -167,6 +178,7 @@ public class Cliente implements Serializable{
 			return false;
 		return true;
 	}
+
 
 	
 
