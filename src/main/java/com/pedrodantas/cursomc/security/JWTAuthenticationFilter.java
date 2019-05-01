@@ -39,19 +39,13 @@ private AuthenticationManager authenticationManager;
 
 	@Override
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
-
 		try {
 			CredenciaisDTO creds = new ObjectMapper()
 	                .readValue(req.getInputStream(), CredenciaisDTO.class);
-
 	        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getSenha(), new ArrayList<>());
-
 	        Authentication auth = authenticationManager.authenticate(authToken);
-
 	        return auth;
-
 		}
-
 		catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -63,11 +57,10 @@ private AuthenticationManager authenticationManager;
                                             HttpServletResponse res,
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
-
 		String username = ((UserSS) auth.getPrincipal()).getUsername();
         String token = jwtUtil.generationToken(username);
         res.addHeader("Authorization", "Bearer " + token);
-
+        res.addHeader("access-control-expose-headers", "Authorization"); 
 	}
 
 	
@@ -88,9 +81,7 @@ private AuthenticationManager authenticationManager;
         
 
         private String json() {
-
             long date = new Date().getTime();
-
             return "{\"timestamp\": " + date + ", "
 
                 + "\"status\": 401, "
@@ -102,6 +93,5 @@ private AuthenticationManager authenticationManager;
                 + "\"path\": \"/login\"}";
 
         }
-
     }
 }
