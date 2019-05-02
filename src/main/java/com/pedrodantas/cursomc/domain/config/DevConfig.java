@@ -15,7 +15,7 @@ import com.pedrodantas.cursomc.services.SmtpEmailService;
 @Configuration
 @Profile("dev")
 public class DevConfig {
-	
+
 	@Autowired
 	private DbService dbService;
 	
@@ -23,11 +23,13 @@ public class DevConfig {
 	private String strategy;
 	
 	@Bean
-	public boolean instantiateDataBase() throws ParseException {
-		if(!"create".equals(strategy)) {
+	public boolean instantiateDatabase() throws ParseException {
+		
+		if (!"create".equals(strategy)) {
 			return false;
 		}
-		dbService.instantiateTestDataBase();	
+		
+		dbService.instantiateTestDatabase();
 		return true;
 	}
 	
@@ -35,5 +37,4 @@ public class DevConfig {
 	public EmailService emailService() {
 		return new SmtpEmailService();
 	}
-
 }

@@ -60,7 +60,7 @@ public class CategoriaResource {
 	}
 	
 	
-	 @PreAuthorize("hasAnyRole('ADMIN')") 
+	@PreAuthorize("hasAnyRole('ADMIN')") 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
@@ -72,8 +72,7 @@ public class CategoriaResource {
 	public ResponseEntity<List<CategoriaDTO>> findAll() {
 		List<Categoria> list = service.findAll();	
 		List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDTO);
-		
+		return ResponseEntity.ok().body(listDTO);	
 	}
 	
 	
